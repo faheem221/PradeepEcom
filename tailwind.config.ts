@@ -12,6 +12,15 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      container: {
+        center: true,
+        padding: "1rem", // Adjust as needed
+      },
+      fontFamily: {
+        sans: ["Satoshi", "Work Sans", "sans-serif"],
+        grotesk: ["Cabinet Grotesk", "sans-serif"],
+        "Work Sans": ["Work Sans", "sans-serif"]
+      },
     },
   },
   plugins: [],

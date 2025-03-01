@@ -8,7 +8,7 @@ import {
   BuildingOffice,
 } from "@phosphor-icons/react";
 
-const Icon_color = "#00E676";
+
 const Icon_size = "44";
 const Icon_type = "fill";
 const _Industries = [

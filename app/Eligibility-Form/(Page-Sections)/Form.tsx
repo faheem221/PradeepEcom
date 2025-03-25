@@ -17,7 +17,7 @@ interface PersonalDetailsForm {
   fullName: string;
   email: string;
   phone: string;
-  dob: DateValue | null ;
+  dob: DateValue | null;
   gender: string;
   state: string;
   city: string;
@@ -102,6 +102,7 @@ const Form = () => {
   });
 
   const [errors, setErrors] = useState({});
+
   const validate = () => {
     const newErrors: PersonalDetailsErrors = {};
 
@@ -116,7 +117,7 @@ const Form = () => {
     else if (!/^\d{10}$/.test(formData.phone))
       newErrors.phone = "Phone must be 10 digits";
 
-    if (!formData.dob) newErrors.dob = "Date of Birth is required"
+    if (!formData.dob) newErrors.dob = "Date of Birth is required";
 
     if (!formData.gender) newErrors.gender = "Gender is required";
 
@@ -225,7 +226,7 @@ const Form = () => {
           </AccordionItem>
         </Accordion>
 
-        <div className="mt-5 px-2">
+        <div className="mt-5 px-2 flex justify-end">
           <Button onPress={() => handleSubmit()} color="primary">
             Submit
           </Button>
@@ -250,12 +251,14 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
   formData,
   errors,
 }) => {
+  console.log(formData.gender);
   return (
     <div className="w-full px-3 py-4 bg-white">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <div>
-          <label>Full Name</label>
           <Input
+            label={"Full Name"}
+            labelPlacement="outside"
             name="fullName"
             value={formData.fullName}
             onChange={(e) =>
@@ -272,9 +275,10 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
         </div>
 
         <div>
-          <label>Email</label>
           <Input
-            name="email"
+            name="Email"
+            labelPlacement="outside"
+            label={"Email"}
             value={formData.email}
             onChange={(e) =>
               handleChangePersonalDetails("email", e.target.value)
@@ -290,9 +294,10 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
         </div>
 
         <div>
-          <label>Phone</label>
           <Input
             name="phone"
+            label={"Phone"}
+            labelPlacement="outside"
             value={formData.phone}
             onChange={(e) =>
               handleChangePersonalDetails("phone", e.target.value)
@@ -308,9 +313,10 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
         </div>
 
         <div>
-          <label>Date of Birth</label>
           <DatePicker
             name="dob"
+            label={"Select dob"}
+            labelPlacement="outside"
             onChange={(value) => handleChangePersonalDetails("dob", value)}
             value={formData.dob}
             className="mt-1 w-full"
@@ -323,27 +329,31 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
         </div>
 
         <div>
-          <label>Select Gender</label>
           <Select
+            label={"Select Gender"}
             variant="bordered"
+            labelPlacement="outside"
             size={"md"}
             radius="sm"
             isInvalid={!!errors.gender}
             errorMessage={errors.gender}
             className="w-full mt-1"
             placeholder="Select a Gender"
-            onChange={(value) => handleChangePersonalDetails("gender", value)}
-            value={formData.gender}
+            onChange={(value) =>
+              handleChangePersonalDetails("gender", value.target.value)
+            }
+            selectedKeys={[formData.gender]}
           >
-            {Gender.map((gender, idx) => (
-              <SelectItem key={idx}>{gender.label}</SelectItem>
+            {Gender.map((gender) => (
+              <SelectItem key={gender.key}>{gender.label}</SelectItem>
             ))}
           </Select>
         </div>
 
         <div>
-          <label>State</label>
           <Input
+            label={"State"}
+            labelPlacement="outside"
             name="state"
             value={formData.state}
             onChange={(e) =>
@@ -360,8 +370,9 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
         </div>
 
         <div>
-          <label>City</label>
           <Input
+            label={"City"}
+            labelPlacement="outside"
             name="city"
             value={formData.city}
             onChange={(e) =>
@@ -378,9 +389,10 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
         </div>
 
         <div>
-          <label>Pincode</label>
           <Input
             name="pincode"
+            label={"Pincode"}
+            labelPlacement="outside"
             value={formData.pincode}
             onChange={(e) =>
               handleChangePersonalDetails("pincode", e.target.value)
@@ -458,8 +470,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
         <div className="flex flex-col gap-4">
           <div>
             {/* School name Input */}
-            <label>School Name</label>
             <Input
+              label={"School Name"}
+              labelPlacement="outside"
               name="schoolName10"
               value={formData.schoolName10}
               onChange={(e) =>
@@ -476,8 +489,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
           </div>
           <div>
             {/* Board name Input */}
-            <label>Board Name</label>
             <Select
+              label={"Board Name"}
+              labelPlacement="outside"
               variant="bordered"
               size={"md"}
               radius="sm"
@@ -490,15 +504,16 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
               }
               value={formData.boardName10}
             >
-              {educationBoards.map((sub, idx) => (
-                <SelectItem key={idx}>{sub.label}</SelectItem>
+              {educationBoards.map((sub) => (
+                <SelectItem key={sub.label}>{sub.label}</SelectItem>
               ))}
             </Select>
           </div>
           <div>
             {/* Year of Passing name Input */}
-            <label>Year of passing</label>
             <Select
+              label={"Year of passing"}
+              labelPlacement="outside"
               variant="bordered"
               size={"md"}
               radius="sm"
@@ -507,9 +522,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
               className="w-full mt-1"
               placeholder="Select a Year"
               onChange={(value) =>
-                handleChangePersonalDetails("passingYear10", value)
+                handleChangePersonalDetails("passingYear10", value.target.value)
               }
-              value={formData.passingYear10}
+              selectedKeys={[formData.passingYear10]}
             >
               {years.map((year, idx) => (
                 <SelectItem key={idx}>{year.label}</SelectItem>
@@ -518,8 +533,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
           </div>
           <div>
             {/* Year of Passing Input */}
-            <label>Marks obtained</label>
             <Input
+              label={"Marks obtained"}
+              labelPlacement="outside"
               name="marks10"
               value={formData.marks10}
               onChange={(e) =>
@@ -536,8 +552,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
           </div>
           <div>
             {/* Percentage Input */}
-            <label>Percentage / CGPA</label>
             <Input
+              label={"Percentage / CGPA"}
+              labelPlacement="outside"
               name="CGPA10"
               value={formData.CGPA10}
               onChange={(e) =>
@@ -556,8 +573,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
         <div className="flex flex-col gap-4">
           <div>
             {/* School name Input */}
-            <label>School Name</label>
             <Input
+              label={"School Name"}
+              labelPlacement="outside"
               name="schoolName12"
               value={formData.schoolName12}
               onChange={(e) =>
@@ -574,8 +592,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
           </div>
           <div>
             {/* Board name Input */}
-            <label>Board Name</label>
             <Select
+              label={"Board Name"}
+              labelPlacement="outside"
               variant="bordered"
               size={"md"}
               radius="sm"
@@ -584,9 +603,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
               className="w-full mt-1"
               placeholder="Select your board"
               onChange={(value) =>
-                handleChangePersonalDetails("boardName12", value)
+                handleChangePersonalDetails("boardName12", value.target.value)
               }
-               value={formData.boardName12}
+              selectedKeys={[formData.boardName12]}
             >
               {educationBoards.map((sub, idx) => (
                 <SelectItem key={idx}>{sub.label}</SelectItem>
@@ -595,8 +614,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
           </div>
           <div>
             {/* Year of Passing name Input */}
-            <label>Year of passing</label>
             <Select
+              label={"Year of passing"}
+              labelPlacement="outside"
               variant="bordered"
               size={"md"}
               radius="sm"
@@ -605,9 +625,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
               className="w-full mt-1"
               placeholder="Select a Year"
               onChange={(value) =>
-                handleChangePersonalDetails("passingYear12", value)
+                handleChangePersonalDetails("passingYear12", value.target.value)
               }
-                value={formData.passingYear12}
+              selectedKeys={[formData.passingYear12]}
             >
               {years.map((year, idx) => (
                 <SelectItem key={idx}>{year.label}</SelectItem>
@@ -616,8 +636,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
           </div>
           <div>
             {/* Year of Passing Input */}
-            <label>Marks obtained</label>
             <Input
+              label={"Marks obtained"}
+              labelPlacement="outside"
               name="marks12"
               value={formData.marks12}
               onChange={(e) =>
@@ -634,8 +655,10 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
           </div>
           <div>
             {/* Percentage Input */}
-            <label>Percentage / CGPA</label>
+
             <Input
+              label={"Percentage / CGPA"}
+              labelPlacement="outside"
               name="CGPA12"
               value={formData.CGPA12}
               onChange={(e) =>
@@ -652,8 +675,10 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
           </div>
           <div>
             {/* Percentage Input */}
-            <label> Subject</label>
+
             <Select
+              label={"Subject"}
+              labelPlacement="outside"
               variant="bordered"
               size={"md"}
               radius="sm"
@@ -662,9 +687,9 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
               className="w-full mt-1"
               placeholder="Select subject"
               onChange={(value) =>
-                handleChangePersonalDetails("subject12", value)
+                handleChangePersonalDetails("subject12", value.target.value)
               }
-              value={formData.subject12}
+              selectedKeys={[formData.subject12]}
             >
               {subject.map((sub, idx) => (
                 <SelectItem key={idx}>{sub.label}</SelectItem>
@@ -691,8 +716,9 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 ">
         <div>
           {/* Name Input */}
-          <label>Institute Name</label>
           <Input
+            label={"Institute Name"}
+            labelPlacement="outside"
             name="Institute Name"
             value={formData.InstituteName}
             onChange={(e) =>
@@ -709,8 +735,9 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
         </div>
         <div>
           {/* Email */}
-          <label>College Name</label>
           <Input
+            label={"College Name"}
+            labelPlacement="outside"
             name="Collge Name"
             value={formData.collegeName}
             onChange={(e) =>
@@ -727,8 +754,9 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
         </div>
         <div>
           {/* Phone */}
-          <label>Year of Commencement</label>
           <Select
+            label={"Year of Commencement"}
+            labelPlacement="outside"
             variant="bordered"
             size={"md"}
             radius="sm"
@@ -737,9 +765,9 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
             className="w-full mt-1"
             placeholder="Select a Year"
             onChange={(value) =>
-              handleChangePersonalDetails("collegeCommencementYear", value)
+              handleChangePersonalDetails("collegeCommencementYear", value.target.value)
             }
-             value={formData.collegeCommencementYear}
+            selectedKeys={[formData.collegeCommencementYear]}
           >
             {years.map((year, idx) => (
               <SelectItem key={idx}>{year.label}</SelectItem>
@@ -748,8 +776,10 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
         </div>
         <div>
           {/* DoB */}
-          <label>Level</label>
+
           <Input
+            label={"Level"}
+            labelPlacement="outside"
             name="level"
             value={formData.collegeLevel}
             onChange={(e) =>
@@ -766,8 +796,9 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
         </div>
         <div>
           {/* Gender */}
-          <label>Year of Passing</label>
           <Select
+            label={"Year of Passing"}
+            labelPlacement="outside"
             variant="bordered"
             size={"md"}
             radius="sm"
@@ -776,9 +807,9 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
             className="w-full mt-1"
             placeholder="Select a Year"
             onChange={(value) =>
-              handleChangePersonalDetails("collegePassingYear", value)
+              handleChangePersonalDetails("collegePassingYear", value.target.value)
             }
-             value={formData.collegePassingYear}
+            selectedKeys={[formData.collegePassingYear]}
           >
             {years.map((year, idx) => (
               <SelectItem key={idx}>{year.label}</SelectItem>
@@ -788,8 +819,9 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
 
         <div>
           {/* DoB */}
-          <label>Marks Obtained</label>
           <Input
+            label={"Marks Obtained"}
+            labelPlacement="outside"
             name="marks obtained"
             value={formData.collegeMarks}
             onChange={(e) =>
@@ -806,8 +838,9 @@ const CollegeQualification: React.FC<PersonalDetailsProps> = ({
         </div>
         <div>
           {/* DoB */}
-          <label>Percentage</label>
           <Input
+            label={"Percentage"}
+            labelPlacement="outside"
             name="Percentage"
             value={formData.collegePercentage}
             onChange={(e) =>

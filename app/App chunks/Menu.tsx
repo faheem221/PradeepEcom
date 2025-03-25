@@ -32,7 +32,7 @@ const Menu = () => {
               y: e.clientY - btn.top - circleSize / 3,
             });
           }}
-          className="text-xl px-5 py-2 border border-black rounded-full capitalize relative overflow-hidden"
+          className="text-md px-5 py-2 border border-black rounded-full capitalize relative overflow-hidden"
         >
          <AnimatePresence>
          {hoverId === idx && (

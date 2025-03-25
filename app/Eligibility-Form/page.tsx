@@ -2,7 +2,7 @@ import React from 'react'
 import Form from './(Page-Sections)/Form'
 const Page = () => {
   return (
-    <div className='mb-20 mt-14'>
+    <div className=''>
         <Form />
     </div>
   )

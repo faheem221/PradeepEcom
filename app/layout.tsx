@@ -23,13 +23,13 @@ export default function RootLayout({
         ></link>
       </head>
       <body>
-        <ReactLenis root>
+     
           <Providers>
             <Header />
             {children}
             <Footer />
           </Providers>
-        </ReactLenis>
+      
       </body>
     </html>
   );

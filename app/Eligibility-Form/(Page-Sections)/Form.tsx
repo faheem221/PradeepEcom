@@ -103,7 +103,7 @@ const Form = () => {
 
   const [errors, setErrors] = useState({});
   const validate = () => {
-    let newErrors: PersonalDetailsErrors = {};
+    const newErrors: PersonalDetailsErrors = {};
 
     // Basic Info Validation
     if (!formData.fullName.trim()) newErrors.fullName = "Full Name is required";
@@ -156,7 +156,7 @@ const Form = () => {
       newErrors.collegePassingYear = "Passing Year is required";
     if (!formData.collegeMarks) newErrors.collegeMarks = "Marks is required";
     if (!formData.collegeLevel) newErrors.collegeLevel = "Level is required";
-
+    if (!formData.subject12) newErrors.subject12 = "Subject is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -333,7 +333,7 @@ const PersonalDetails: React.FC<PersonalDetailsProps> = ({
             className="w-full mt-1"
             placeholder="Select a Gender"
             onChange={(value) => handleChangePersonalDetails("gender", value)}
-             value={formData.gender}
+            value={formData.gender}
           >
             {Gender.map((gender, idx) => (
               <SelectItem key={idx}>{gender.label}</SelectItem>

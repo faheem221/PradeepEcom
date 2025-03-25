@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./Navbar/Header";
 import Footer from "./Footer/Footer";
-import ReactLenis from "lenis/react";
 import { Providers } from "./Provider";
 export const metadata: Metadata = {
   title: "Create Next App",

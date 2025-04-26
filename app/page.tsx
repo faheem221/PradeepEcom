@@ -1,13 +1,12 @@
 import HeroSection from "./(Home page)/HeroSection";
-import Industries from "./(Home page)/InterestArea";
 
+import CourseSection from "./(Home page)/CourseSection";
 export default function Home() {
   return (
     <>
-       <HeroSection />
-       <Industries />
-      
+      <HeroSection />
+      <CourseSection />
+
     </>
   );
 }
- 

@@ -22,13 +22,13 @@ export default function RootLayout({
         ></link>
       </head>
       <body>
-     
-          <Providers>
+        <Providers>
+          <div className="relative">
             <Header />
-            {children}
-            <Footer />
-          </Providers>
-      
+          </div>
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

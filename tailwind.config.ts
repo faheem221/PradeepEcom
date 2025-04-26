@@ -16,7 +16,10 @@ export default {
       },
       container: {
         center: true,
-        padding: "1rem", // Adjust as needed
+        padding: "1rem",
+        screens: {
+          sm:'1300px'
+        }
       },
       fontFamily: {
         sans: ["Satoshi", "Work Sans", "sans-serif"],

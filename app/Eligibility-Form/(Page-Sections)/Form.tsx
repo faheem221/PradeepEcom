@@ -185,7 +185,7 @@ const Form = () => {
   return (
     <div className="bg-slate-100">
       <div className=" pb-7 max-w-4xl mx-auto min-h-[600px] bg-white">
-        <h2 className="p-7 text-center text-3xl">Eligibilty From</h2>
+        <h2 className="p-7 text-center text-3xl">Eligibilty Form</h2>
 
         <Accordion variant="splitted" defaultExpandedKeys={["1"]} className="">
           <AccordionItem
@@ -462,11 +462,8 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
   ];
   return (
     <div className="w-full px-3 py-4 bg-white">
-      <div className="grid grid-cols-2 gap-8">
-        <h2 className="w-full rounded-lg p-2 bg-slate-100">10th</h2>
-        <h2 className="w-full rounded-lg p-2 bg-slate-100">12th</h2>
-      </div>
-      <div className="grid mt-3 grid-cols-2 gap-8 ">
+      <h2 className="w-full rounded-lg p-2 bg-slate-100">10th</h2>
+      <div className="grid mt-3 grid-cols-1 gap-8 ">
         <div className="flex flex-col gap-4">
           <div>
             {/* School name Input */}
@@ -570,6 +567,7 @@ const AcademicQualifications: React.FC<PersonalDetailsProps> = ({
             />
           </div>
         </div>
+        <h2 className="w-full rounded-lg p-2 bg-slate-100">12th</h2>
         <div className="flex flex-col gap-4">
           <div>
             {/* School name Input */}

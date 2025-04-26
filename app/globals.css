@@ -3,3 +3,22 @@
 @tailwind utilities;
 
  
+@keyframes ripple {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.7;
+    }
+    70% {
+      transform: scale(2);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .animate-ripple {
+    animation: ripple 2s infinite;
+  }
+  
